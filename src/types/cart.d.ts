@@ -7,3 +7,7 @@ export interface ICartItem {
 }
 
 export interface ICart extends Array<ICartItem> {}
+
+export interface ICartState {
+  cart: ICartItem[];
+}

@@ -18,6 +18,7 @@ export interface ICreateOrderFormData {
   address: string;
   priority: string;
   cart: string;
+  position: string;
 }
 
 export interface ICreateOrderFormDataDto {
@@ -26,6 +27,7 @@ export interface ICreateOrderFormDataDto {
   address: string;
   priority: boolean;
   cart: ICartItem[];
+  position: string;
 }
 
 export type CreateOrderFormError = {
