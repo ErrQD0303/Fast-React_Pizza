@@ -22,6 +22,7 @@ function CreateOrder() {
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+  const isLoading = navigation.state === "loading";
   const dispatch = useDispatch<AppDispatch>();
 
   const formErrors = useActionData() as CreateOrderFormError;
@@ -75,7 +76,7 @@ function CreateOrder() {
           >
             Address
           </label>
-          <div className="relative grow">
+          <div className={`${!isLoading && "relative"} grow`}>
             <input
               type="text"
               name="address"

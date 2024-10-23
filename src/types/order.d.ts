@@ -33,3 +33,7 @@ export interface ICreateOrderFormDataDto {
 export type CreateOrderFormError = {
   phone?: string;
 };
+
+export interface IOrderParams {
+  orderId: string;
+}

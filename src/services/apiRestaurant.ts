@@ -1,4 +1,4 @@
-import { IOrder, IOrderPostFormDto } from "../types/order";
+import { IOrder, ICreateOrderFormDataDto } from "../types/order";
 
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
@@ -20,7 +20,7 @@ export async function getOrder(id: string): Promise<IOrder> {
   return data;
 }
 
-export async function createOrder(newOrder: IOrderPostFormDto) {
+export async function createOrder(newOrder: ICreateOrderFormDataDto) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -38,7 +38,7 @@ export async function createOrder(newOrder: IOrderPostFormDto) {
   }
 }
 
-export async function updateOrder(id, updateObj) {
+export async function updateOrder(id: string, updateObj: object) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",
