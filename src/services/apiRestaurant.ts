@@ -1,5 +1,66 @@
+import axios from "axios";
 import { IOrder, ICreateOrderFormDataDto } from "../types/order";
 
+const API_URL = "https://react-fast-pizza-api.onrender.com/api";
+const restaurantAxios = axios.create({
+  baseURL: API_URL,
+});
+
+export async function getMenu() {
+  try {
+    const res = await restaurantAxios.get("menu", {
+      responseType: "json",
+    });
+
+    const { data } = res.data;
+    return data;
+  } catch (error) {
+    throw new Error("Failed getting menu");
+  }
+}
+
+export async function getOrder(id: string): Promise<IOrder> {
+  try {
+    const res = await restaurantAxios.get(`order/${id}`, {
+      responseType: "json",
+    });
+
+    const { data } = res.data;
+    return data;
+  } catch (error) {
+    throw new Error(`Couldn't find order #${id}`);
+  }
+}
+
+export async function createOrder(newOrder: ICreateOrderFormDataDto) {
+  try {
+    const res = await restaurantAxios.post("order", newOrder, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const { data } = res.data;
+    return data;
+  } catch {
+    throw Error("Failed creating your order");
+  }
+}
+
+export async function updateOrder(id: string, updateObj: object) {
+  try {
+    await restaurantAxios.patch(`order/${id}`, updateObj, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // We don't need the data, so we don't return anything
+  } catch (err) {
+    throw Error("Failed updating your order");
+  }
+}
+
+/* 
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
 export async function getMenu() {
@@ -53,4 +114,4 @@ export async function updateOrder(id: string, updateObj: object) {
   } catch (err) {
     throw Error("Failed updating your order");
   }
-}
+} */
