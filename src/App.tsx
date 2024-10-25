@@ -13,7 +13,9 @@ import Order from "./features/order/Order.tsx";
 import AppLayout from "./layouts/AppLayout.tsx";
 import "./styles/index.scss";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import logger from "./logs/logger.ts";
 
+logger.info("test log! pinotest stream from reactjs application.");
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
